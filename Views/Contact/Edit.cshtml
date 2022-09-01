@@ -1,0 +1,44 @@
+@model ContactModel;
+@{
+    ViewData["Title"] = "Edit contact";
+}
+ @if (TempData["SuccessMessage"] != null)
+  {
+     <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="close">X</button>
+          @TempData["SuccessMessage"]
+     </div>
+  }
+  @if(TempData["ErrorMessage"] != null){
+     <div class="alert alert-danger" role="alert">
+          <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="close">X</button>
+          @TempData["ErrorMessage"]
+     </div>
+  }
+
+<div class="text-center">
+ 
+    <h1>Edit Contact</h1>
+
+
+</div>
+<form asp-controller="Contact" asp-action="Edit" method="post">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" asp-for="Name" class="form-control" placeholder="Type the contact name">
+    @Html.ValidationMessageFor( x => x.Name)
+  </div>
+   <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" asp-for="Email" class="form-control" placeholder="Type the contact email">
+    @Html.ValidationMessageFor( x => x.Email)
+  </div>
+  <div class="mb-3">
+    <label for="phone" class="form-label">Phone</label>
+    <input type="text" asp-for="Phone" class="form-control" placeholder="Type the contact phone">
+    @Html.ValidationMessageFor( x => x.Phone)
+  </div>
+  
+  <button type="submit" class="btn btn-primary btn-block">Edit</button>
+  <a class="btn btn-secondary btn-block" asp-controller="Contact" asp-action="Index" role="button">Back</a>
+</form>
